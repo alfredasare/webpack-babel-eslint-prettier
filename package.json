@@ -6,7 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "keywords": [],
   "author": "Alfred Asare",
@@ -47,9 +50,12 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json}": [
-      "prettier --write",
+    "*.+(js|jsx)": [
       "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
       "git add"
     ]
   }
